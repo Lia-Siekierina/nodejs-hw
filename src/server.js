@@ -6,7 +6,7 @@ import pinoHttp from 'pino-http';
 const app = express();
 
 app.use(cors());
-app.use(express());
+app.use(express.json());
 app.use(pinoHttp());
 
 app.get('/notes', (req, res) => {
