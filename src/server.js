@@ -7,7 +7,16 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(pinoHttp());
+app.use(
+  pinoHttp({
+    transport: {
+      target: 'pino-pretty',
+      options: {
+        colorize: true,
+      },
+    },
+  }),
+);
 
 app.get('/notes', (req, res) => {
   res.status(200).json({
