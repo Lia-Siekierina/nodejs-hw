@@ -5,6 +5,7 @@ dns.setServers(['8.8.8.8']);
 import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
+import { errors } from 'celebrate';
 import { logger } from './middleware/logger.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 
@@ -21,6 +22,8 @@ app.use(express.json());
 app.use(logger);
 
 app.use(notesRouter);
+
+app.use(errors());
 
 app.use(notFoundHandler);
 
