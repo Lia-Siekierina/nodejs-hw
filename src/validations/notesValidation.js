@@ -13,13 +13,15 @@ export const getAllNotesSchema = celebrate({
 
 export const noteIdSchema = celebrate({
   params: Joi.object({
-    noteId: Joi.string().custom((value, helpers) => {
-      if (!isValidObjectId(value)) {
-        return helpers.error('any.invalid');
-      }
+    noteId: Joi.string()
+      .custom((value, helpers) => {
+        if (!isValidObjectId(value)) {
+          return helpers.error('any.invalid');
+        }
 
-      return value;
-    }),
+        return value;
+      })
+      .required(),
   }),
 });
 
@@ -33,13 +35,15 @@ export const createNoteSchema = celebrate({
 
 export const updateNoteSchema = celebrate({
   params: Joi.object({
-    noteId: Joi.string().custom((value, helpers) => {
-      if (!isValidObjectId(value)) {
-        return helpers.error('any.invalid');
-      }
+    noteId: Joi.string()
+      .custom((value, helpers) => {
+        if (!isValidObjectId(value)) {
+          return helpers.error('any.invalid');
+        }
 
-      return value;
-    }),
+        return value;
+      })
+      .required(),
   }),
   body: Joi.object({
     title: Joi.string().min(1),
